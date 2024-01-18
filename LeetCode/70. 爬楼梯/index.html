@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            /**
+             * 方法一
+             * @param {number} n
+             * @return {number}
+             */
+
+            var memoArr = [];
+            var climbStairs = function (n) {
+                if (memoArr[n]) return memoArr[n];
+                if (n === 1) return (memoArr[n] = 1);
+                if (n === 2) return (memoArr[n] = 2);
+                memoArr[n] = climbStairs(n - 2) + climbStairs(n - 1);
+                return memoArr[n];
+            };
+            // console.log(climbStairs(45));
+        </script>
+        <script>
+            /**
+             * 方法二 动态规划
+             * @param {number} n
+             * @return {number}
+             */
+
+            var climbStairs = function (n) {
+                var memoArr = [null, 1, 2];
+                for (let i = 3; i <= n; i++) {
+                    memoArr[i] = memoArr[i - 2] + memoArr[i - 1];
+                }
+                return memoArr[n];
+            };
+            console.log(climbStairs(45));
+        </script>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            /**
+             * @param {string} s
+             * @param {number} numRows
+             * @return {string}
+             */
+            var convert = function (s, numRows) {
+                let tempArr = [];
+                if (numRows !== 1) {
+                    let flag = 1;
+                    let index = 0;
+                    for (let i = 0; i < s.length; i++) {
+                        const ele = s[i];
+                        if (index === numRows - 1) {
+                            flag = -1;
+                        } else if (index === 0) {
+                            flag = 1;
+                        }
+                        if (!tempArr[index]) {
+                            tempArr[index] = [ele];
+                        } else {
+                            tempArr[index].push(ele);
+                        }
+                        index += flag;
+                    }
+                }else {
+                    tempArr = s.split('')
+                }
+                return tempArr.flat().join('');
+            };
+
+            console.log(convert('AB', 1));
+        </script>
+    </body>
+</html>
